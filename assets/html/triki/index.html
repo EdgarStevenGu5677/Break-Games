@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triki</title>
+
+    <!-- Fontawesome Iconos -->
+    <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+       function iniciarTriki() {
+            window.location.href = './triki.html'; // Redirigir a la página del juego Triki
+            return false; // Para prevenir el comportamiento por defecto del enlace
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto py-8 text-center">
+        <h1 class="text-4xl font-bold text-gray-800">HMMC</h1>
+    </div>
+    <div class="container mx-auto py-12 max-w-md">
+        <div class="bg-blue-100 rounded-lg shadow-lg p-4">
+            <div class="flex flex-col items-center space-y-4 p-12">
+                <div class="flex justify-center space-x-4">
+                    <label class="flex items-center">
+                        <input type="checkbox" name="difficulty" value="easy" onclick="setDifficulty('easy')" class="hidden">
+                        <div id="easyCheckbox" class="custom-checkbox bg-white border-2 border-gray-400 rounded-lg w-16 h-16 flex items-center justify-center">
+                            <span class="hidden" id="easyChecked">✕</span> <!-- Unicode para la X -->
+                            <span class="hidden" id="easyUnchecked">○</span> <!-- Unicode para el círculo -->
+                        </div>
+                        <span class="ml-2">Fácil</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" name="difficulty" value="medium" onclick="setDifficulty('medium')" class="hidden">
+                        <div id="mediumCheckbox" class="custom-checkbox bg-white border-2 border-gray-400 rounded-lg w-16 h-16 flex items-center justify-center">
+                            <span class="hidden" id="mediumChecked">✕</span>
+                            <span class="hidden" id="mediumUnchecked">○</span>
+                        </div>
+                        <span class="ml-2">Media</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" name="difficulty" value="hard" onclick="setDifficulty('hard')" class="hidden">
+                        <div id="hardCheckbox" class="custom-checkbox bg-white border-2 border-gray-400 rounded-lg w-16 h-16 flex items-center justify-center">
+                            <span class="hidden" id="hardChecked">✕</span>
+                            <span class="hidden" id="hardUnchecked">○</span>
+                        </div>
+                        <span class="ml-2">Difícil</span>
+                    </label>
+                </div>
+    
+                <!-- Botón 1 para iniciar Triki -->
+                <a href="#" onclick="return iniciarTriki()" class="w-full bg-blue-500 text-white py-6 px-6 rounded-lg hover:bg-blue-700 text-center">
+                    Iniciar
+                </a>
+    
+                <!-- Enlace de vuelta a la página principal -->
+                <a href="./../../../index.html" class="w-full bg-green-500 text-white py-6 px-6 rounded-lg hover:bg-green-700 text-center">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+   
+    <footer class="w-full bg-gradient-to-t bg-blue-100 bg-opacity-50 to-white border-t border-gray-300 py-1">
+        <div class="container mx-auto px-4">
+            <!-- Texto del footer -->
+            <p class="flex justify-center text-blue-500 text-sm mb-4">
+                Copyright © | 2024
+                <i class="fa fa-rocket text-blue-500"></i>
+            </p>
+
+            <!-- Iconos de redes sociales -->
+            <div class="flex justify-center space-x-4">
+                <div class="icon-circle mb-2 w-10 h-10">
+                    <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
+                        <i class="fab fa-instagram icon text-lg"></i>
+                    </a>
+                </div>
+                <div class="icon-circle mb-2 w-10 h-10">                                                                  
+                    <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
+                        <i class="fab fa-linkedin icon text-lg"></i>
+                    </a>
+                </div>
+                <div class="icon-circle mb-2 w-10 h-10">
+                    <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
+                        <i class="fab fa-github icon text-lg"></i>
+                    </a>
+                </div>
+                <div class="icon-circle w-10 h-10">
+                    <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
+                        <i class="fab fa-discord icon text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
