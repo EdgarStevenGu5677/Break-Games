@@ -9,45 +9,17 @@
     <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Estilos adicionales si es necesario */
-        body {
-            background-image: url('./assets/image/fondo1.avif');
-            /* Ruta de tu imagen de fondo */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        .card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/index.css">
 </head>
 
-<body class="bg-gray-100">
-     
-    <button id="hiddenButton" style="display: none;"></button>
-    <!-- Botón de control de volumen -->
-    <div class="fixed top-4 right-4 z-50">
-        <button id="volumeButton" class="bg-gray-800 text-white rounded-full p-3 shadow-lg hover:text-gray-600" type="button">
-            <i id="volumeIcon" class="fas fa-volume-up text-xl"></i>
-        </button>
-    </div>
-    
-<audio id="soundEffect"src="assets\sonidos\appulse-165912.mp3" autoplay loop></audio>
-
-    <div class="container mx-auto py-8 text-center">
+<body class="flex flex-col min-h-screen bg-gray-100">
+    <div class="flex-grow container mx-auto py-8 text-center">
         <h1 class="text-4xl font-bold text-gray-100">Break Games</h1>
     </div>
-
-    <div class="w-full md:w-3/4 lg:w-1/2 mx-auto py-16 mb-16 md:mb-0">
+    <div class="flex-grow container mx-auto py-16 mb-16 md:mb-0 px-8 lg:px-24">
         <div class="bg-blue-100 bg-opacity-50 rounded-lg shadow p-4">
             <div class="flex flex-wrap -mx-2">
-                <!-- Tarjeta 1: Triki -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="./assets/html/triki/index.html"
@@ -57,8 +29,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Tarjeta 2: Ahorcado -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="#"
@@ -68,8 +38,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Tarjeta 3: Batalla naval -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="#"
@@ -79,8 +47,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Tarjeta 4: Damas -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="#"
@@ -90,8 +56,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Tarjeta 5: Palabras encadenadas -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="#"
@@ -101,8 +65,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Tarjeta 6: Veintiuno (Blackjack) -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="#"
@@ -112,8 +74,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Tarjeta 7: Piedra, papel o tijera -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="#"
@@ -123,8 +83,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Tarjeta 8: Serpientes y escaleras -->
                 <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-4">
                     <div class="bg-blue-50 rounded-lg shadow-lg overflow-hidden card">
                         <a href="#"
@@ -140,33 +98,27 @@
 
     <footer class="w-full bg-gradient-to-t bg-blue-100 bg-opacity-50 to-white border-t border-gray-300 py-1">
         <div class="container mx-auto px-4">
-            <!-- Texto del footer -->
             <p class="flex justify-center text-gray-100 text-sm mb-4">
                 Copyright © | 2024
                 <i class="fa fa-rocket text-blue-300"></i>
                 Steven Guaman
             </p>
-
             <div class="flex justify-center space-x-4">
-                <!-- Icono de Instagram -->
                 <div class="icon-circle mb-2 w-10 h-10">
                     <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
                         <i class="fab fa-instagram icon text-lg"></i>
                     </a>
                 </div>
-                <!-- Icono de LinkedIn -->
                 <div class="icon-circle mb-2 w-10 h-5">
                     <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
                         <i class="fab fa-linkedin icon text-lg"></i>
                     </a>
                 </div>
-                <!-- Icono de GitHub -->
                 <div class="icon-circle mb-2 w-10 h-10">
                     <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
                         <i class="fab fa-github icon text-lg"></i>
                     </a>
                 </div>
-                <!-- Icono de Discord -->
                 <div class="icon-circle w-5 h-10">
                     <a href="#" target="_blank" class="text-gray-800 hover:text-gray-600">
                         <i class="fab fa-discord icon text-lg"></i>
@@ -175,7 +127,6 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
 </body>
 
 </html>

@@ -7,59 +7,82 @@
     <title>Triki</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Fontawesome Iconos -->
+    <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
+    <script src="../../js/triki/triki.js"></script>
+    <link rel="stylesheet" href="../../css/triki/triki.css">
 </head>
 
 <body class="bg-gray-100">
+    <audio id="winSound" src="../../sonidos/triki/correct-choice-43861.mp3"></audio>
     <div class="container mx-auto py-12 px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Contenedor 1 Movil -->
+            <div class="flex flex-col items-center mb-4 block md:hidden">
+                <div class="flex items-center">
+                    <div class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i class="fa-solid fa-user mb-2 text-2xl"></i>
+                        <div id="score-x" class="text-2xl">0</div>
+                    </div>
+                    <div class="mx-4 text-3xl font-bold">VS</div>
+                    <div class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i class="fa-solid fa-robot mb-2 text-2xl"></i>
+                        <div id="score-o" class="text-2xl">0</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Contenedor 1 -->
-            <div class="col-span-1 md:col-span-1 shadow-sm md:pr-2 flex justify-center">
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
                 <div class="w-60 h-80 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <img src="https://www.hmmc.com.co/hmmc/dp/portal/images/image-1.png" alt="Jugador">
                 </div>
             </div>
-            <!-- Contenedor del Triki -->
+
+            <!-- Contenedor 2 -->
             <div class="col-span-1 md:col-span-1 bg-white rounded-lg shadow-md p-5 flex justify-center items-center">
                 <div id="triki" class="grid grid-cols-3 gap-2" style="width: 300px; height: 300px;">
-                    <!-- Celdas del Triki -->
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
-                    </div>
-                    <div
-                        class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full">
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                    <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
+                </div>
+            </div>
+            
+
+            <!-- Contenedor 3 Movil -->
+            <div class="block md:hidden">
+                <div class="flex flex-col items-center mb-4">
+                    <div class="flex items-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                            <a href="#" onclick="confirmExit(event)" class="fa-solid fa-arrow-left mb-2 text-3xl"></a>
+                        </div>
+                        <div class="mx-4 text-3xl font-bold"></div>
+                        <div
+                            class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                            <a onclick="reiniciarTriki()" class="fa-solid fa-rotate-right mb-2 text-3xl"></a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-span-1 md:col-span-1 shadow-sm md:pr-2 flex justify-center">
+            <!-- Contenedor 3 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
                 <div class="w-60 h-80 bg-white rounded-lg shadow-md flex justify-center items-center">
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/5eeea355389655.59822ff824b72.gif" alt="celda">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/5eeea355389655.59822ff824b72.gif"
+                        alt="celda">
                 </div>
             </div>
 
-
-            <div class="col-span-1 md:col-span-1 shadow-sm md:pr-2 flex justify-center items-center">
+            <!-- Contenedor 4 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
                 <div class="w-60 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
                     <a onclick="reiniciarTriki()"
                         class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Reiniciar</a>
@@ -68,7 +91,8 @@
                 </div>
             </div>
 
-            <div class="col-span-1 md:col-span-1 shadow-sm md:pr-2 flex justify-center items-center">
+            <!-- Contenedor 5 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
                 <div class="w-80 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
                     <div id="scoreboard" class="text-center mb-4">
                         <div class="text-xl font-bold">Marcador</div>
@@ -82,12 +106,12 @@
                                 <div id="score-o" class="text-2xl">0</div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
 
-            <div class="col-span-1 md:col-span-1 shadow-sm md:pr-2 flex justify-center items-center">
+            <!-- Contenedor 6 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
                 <div class="w-60 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
                     <div id="turn-indicator" class="text-center mb-4">
                         <div class="text-xl font-bold">Turno del jugador:</div>
@@ -95,32 +119,9 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function confirmExit(event) {
-            event.preventDefault(); // Prevenir la redirección inmediata
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, salir',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "./../../html/triki/index.html"; // Redirigir si se confirma
-                }
-            });
-        }
-    </script>
-    <script src="./../../js/triki.js"></script>
 </body>
-
 
 </html>

@@ -1,0 +1,35 @@
+#triki {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px; /* Espacio entre las celdas */
+    width: 300px;
+    height: 300px;
+}
+
+.celda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0f2fe;
+    border: 1px solid #cbd5e1;
+    cursor: pointer;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.celda:nth-child(odd) {
+    background-color: #e0f2fe;
+}
+
+.celda:nth-child(even) {
+    background-color: #cbd5e1;
+}
+
+.celda.text-blue-600 {
+    color: #1d4ed8;
+}
+
+.celda.text-red-600 {
+    color: #dc2626;
+}
