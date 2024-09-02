@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Triki</title>
+    <link rel="icon" href="../../image/tres-en-raya.webp" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Fontawesome Iconos -->
@@ -14,24 +15,25 @@
 </head>
 
 <body class="bg-gray-100">
-    <audio id="winSound" src="../../sonidos/triki/correct-choice-43861.mp3"></audio>
     <div class="container mx-auto py-12 px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
             <!-- Contenedor 1 Movil -->
             <div class="flex flex-col items-center mb-4 block md:hidden">
                 <div class="flex items-center">
-                    <div class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <div id="score-card-o"
+                        class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
                         <i class="fa-solid fa-user mb-2 text-2xl"></i>
-                        <div id="score-x" class="text-2xl">0</div>
+                        <div id="score-o" class="text-2xl">0</div>
                     </div>
                     <div class="mx-4 text-3xl font-bold">VS</div>
-                    <div class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <div id="score-card-x"
+                        class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
                         <i class="fa-solid fa-robot mb-2 text-2xl"></i>
-                        <div id="score-o" class="text-2xl">0</div>
+                        <div id="score-x" class="text-2xl">0</div>
                     </div>
                 </div>
             </div>
+
 
             <!-- Contenedor 1 -->
             <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
@@ -54,7 +56,7 @@
                     <div class="celda bg-blue-200 border border-gray-400 flex items-center justify-center w-full h-full"></div>
                 </div>
             </div>
-            
+
 
             <!-- Contenedor 3 Movil -->
             <div class="block md:hidden">
@@ -65,9 +67,9 @@
                             <a href="#" onclick="confirmExit(event)" class="fa-solid fa-arrow-left mb-2 text-3xl"></a>
                         </div>
                         <div class="mx-4 text-3xl font-bold"></div>
-                        <div
+                        <div id="resetButton"
                             class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
-                            <a onclick="reiniciarTriki()" class="fa-solid fa-rotate-right mb-2 text-3xl"></a>
+                            <a class="fa-solid fa-rotate-right mb-2 text-3xl"></a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +86,7 @@
             <!-- Contenedor 4 -->
             <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
                 <div class="w-60 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
-                    <a onclick="reiniciarTriki()"
+                    <a id="resetButton1"
                         class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Reiniciar</a>
                     <a href="#" onclick="confirmExit(event)"
                         class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Salir</a>
@@ -98,12 +100,13 @@
                         <div class="text-xl font-bold">Marcador</div>
                         <div class="flex justify-around mt-2 w-full space-x-4">
                             <div class="flex flex-col items-center">
-                                <div class="text-lg font-semibold">Jugador X</div>
-                                <div id="score-x" class="text-2xl">0</div>
+                                <i class="fa-solid fa-user mb-2 text-3xl"></i>
+                                <div id="score-o1" class="text-2xl">0</div>
                             </div>
+                            <div class="mx-4 text-3xl font-bold">VS</div>
                             <div class="flex flex-col items-center">
-                                <div class="text-lg font-semibold">Jugador O</div>
-                                <div id="score-o" class="text-2xl">0</div>
+                                <i class="fa-solid fa-robot mb-2 text-3xl"></i>
+                                <div id="score-x1" class="text-2xl">0</div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +118,6 @@
                 <div class="w-60 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
                     <div id="turn-indicator" class="text-center mb-4">
                         <div class="text-xl font-bold">Turno del jugador:</div>
-                        <div id="player-turn" class="text-2xl mt-2">Jugador X</div>
                     </div>
                 </div>
             </div>
