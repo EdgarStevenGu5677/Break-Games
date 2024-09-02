@@ -1,0 +1,8 @@
+#word-container span, #word-container1 span {
+    font-size: 2rem; /* Ajusta el tamaño según sea necesario */
+    border-bottom-width: 2px;
+    border-style: dashed;
+    border-color: #4A5568; /* Cambia el color si es necesario */
+    padding: 0 0.5rem;
+    margin: 0 0.25rem;
+}
