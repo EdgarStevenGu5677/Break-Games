@@ -1,22 +1,26 @@
 import { database, ref, get } from './firebase.js'; // Asegúrate de que esta ruta sea correcta
 
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     const maxAttempts = 8;
     let remainingAttempts = maxAttempts;
     let correctLetters = [];
     let incorrectLetters = [];
     let word = '';
 
+    // Variables para los contadores
+    let gamesWon = 0;
+    let gamesLost = 0;
+
     const winSound = document.getElementById('winSound');
     const loseSound = document.getElementById('loseSound');
 
     const hangmanImages = [
-        '../../image/ahorcado/ahorcado0.png', 
-        '../../image/ahorcado/ahorcado1.png', 
-        '../../image/ahorcado/ahorcado2.png', 
+        '../../image/ahorcado/ahorcado0.png',
+        '../../image/ahorcado/ahorcado1.png',
+        '../../image/ahorcado/ahorcado2.png',
         '../../image/ahorcado/ahorcado3.png',
         '../../image/ahorcado/ahorcado4.png',
-        '../../image/ahorcado/ahorcado5.png', 
+        '../../image/ahorcado/ahorcado5.png',
         '../../image/ahorcado/ahorcado6.png',
         '../../image/ahorcado/ahorcado7.png',
         '../../image/ahorcado/ahorcado8.png'
@@ -83,6 +87,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
+    function updateCounters() {
+        const wonElement = document.getElementById('games-won');
+        const lostElement = document.getElementById('games-lost');
+        if (wonElement && lostElement) {
+            wonElement.textContent = gamesWon;
+            lostElement.textContent = gamesLost;
+        }
+    }
+
     function handleKeyPress(event) {
         const letter = event.key ? event.key.toLowerCase() : event.target.getAttribute('data-key').toLowerCase();
         // Verifica si la tecla presionada es una letra (a-z)
@@ -109,6 +122,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             if (remainingAttempts <= 0) {
                 loseSound.play();  // Reproducir sonido de pérdida
+                gamesLost++;  // Incrementar el contador de pérdidas
+                updateCounters(); // Actualizar la interfaz
                 Swal.fire({
                     title: '¡Perdiste!',
                     text: `La palabra era: ${word}`,
@@ -119,6 +134,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 });
             } else if (!correctLetters.includes('_')) {
                 winSound.play();  // Reproducir sonido de victoria
+                gamesWon++;  // Incrementar el contador de victorias
+                updateCounters(); // Actualizar la interfaz
                 Swal.fire({
                     title: '¡Ganaste!',
                     text: 'Has adivinado la palabra.',
@@ -202,6 +219,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         attemptsContainer.style.display = 'none';
     }
 });
+
 
 //Prueba
 // document.addEventListener('DOMContentLoaded', function () {
