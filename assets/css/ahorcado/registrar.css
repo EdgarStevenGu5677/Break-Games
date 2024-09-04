@@ -1,0 +1,6 @@
+body {
+    background-image: url('../../image/fondo1.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

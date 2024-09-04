@@ -36,6 +36,15 @@
                 </div>
             </div>
 
+            <!-- Contenedor 3 Movil -->
+            <div class="block md:hidden">
+                <div class="h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <div class="text-center mb-4">
+                        <div id="word-container1" class="text-center mb-4"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Contenedor 1 -->
             <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
                 <div class="w-60 h-80 bg-white rounded-lg shadow-md flex justify-center items-center">
@@ -48,16 +57,8 @@
             <div class="col-span-1 md:col-span-1 bg-white rounded-lg shadow-md p-5 flex justify-center items-center">
                 <div class="grid grid-cols-3 gap-2">
                     <!-- Contenedor para la imagen del ahorcado -->
-                    <img id="hangman-image" src="../../image/ahorcado/ahorcado0.png" alt="Ahorcado" class="col-span-3 mx-auto">
-                </div>
-            </div>
-            
-            <!-- Contenedor 3 Movil -->
-            <div class="block md:hidden">
-                <div class="h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
-                    <div class="text-center mb-4">
-                        <div id="word-container1" class="text-center mb-4"></div>
-                    </div>
+                    <img id="hangman-image" src="../../image/ahorcado/ahorcado0.png" alt="Ahorcado"
+                        class="col-span-3 mx-auto">
                 </div>
             </div>
 
@@ -98,14 +99,46 @@
                         <div class="text-lg mt-4 hidden" id="remaining-attempts-container">
                             <span id="remaining-attempts"></span>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Teclado Virtual -->
+    <div id="virtual-keyboard"
+        class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex flex-wrap justify-center gap-2 md:hidden">
+        <!-- Agrega las teclas que necesites -->
+        <button class="key" data-key="a">A</button>
+        <button class="key" data-key="b">B</button>
+        <button class="key" data-key="c">C</button>
+        <button class="key" data-key="d">D</button>
+        <button class="key" data-key="e">E</button>
+        <button class="key" data-key="f">F</button>
+        <button class="key" data-key="g">G</button>
+        <button class="key" data-key="h">H</button>
+        <button class="key" data-key="i">I</button>
+        <button class="key" data-key="j">J</button>
+        <button class="key" data-key="k">K</button>
+        <button class="key" data-key="l">L</button>
+        <button class="key" data-key="m">M</button>
+        <button class="key" data-key="n">N</button>
+        <button class="key" data-key="o">O</button>
+        <button class="key" data-key="p">P</button>
+        <button class="key" data-key="q">Q</button>
+        <button class="key" data-key="r">R</button>
+        <button class="key" data-key="s">S</button>
+        <button class="key" data-key="t">T</button>
+        <button class="key" data-key="u">U</button>
+        <button class="key" data-key="v">V</button>
+        <button class="key" data-key="w">W</button>
+        <button class="key" data-key="x">X</button>
+        <button class="key" data-key="y">Y</button>
+        <button class="key" data-key="z">Z</button>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../js/ahorcado/ahorcado.js"></script>
+    <script type="module" src="../../js/ahorcado/ahorcado.js"></script>
+    <script src="../../js/alert/alert.js"></script>
 </body>
 
 </html>

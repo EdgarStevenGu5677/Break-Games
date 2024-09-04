@@ -1,3 +1,5 @@
+import { database, ref, get } from './firebase.js'; // Asegúrate de que esta ruta sea correcta
+
 document.addEventListener('DOMContentLoaded', async function() {
     const maxAttempts = 8;
     let remainingAttempts = maxAttempts;
@@ -22,8 +24,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     async function fetchRandomWord() {
         try {
-            const response = await fetch('palabras.json');
-            const words = await response.json();
+            const palabrasRef = ref(database, 'palabras'); // Referencia a la colección 'palabras'
+            const snapshot = await get(palabrasRef);
+            let words = [];
+            if (snapshot.exists()) {
+                words = snapshot.val(); // Obtener palabras existentes
+            }
             const randomIndex = Math.floor(Math.random() * words.length);
             word = words[randomIndex];
             return word;
@@ -78,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     function handleKeyPress(event) {
-        const letter = event.key.toLowerCase();
+        const letter = event.key ? event.key.toLowerCase() : event.target.getAttribute('data-key').toLowerCase();
         // Verifica si la tecla presionada es una letra (a-z)
         if (/^[a-z]$/.test(letter)) {
             if (word.includes(letter)) {
@@ -186,29 +192,25 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     document.addEventListener('keydown', handleKeyPress);
 
+    const keyboardButtons = document.querySelectorAll('#virtual-keyboard .key');
+    keyboardButtons.forEach(button => {
+        button.addEventListener('click', handleKeyPress);
+    });
+
     const attemptsContainer = document.getElementById('remaining-attempts-container');
     if (attemptsContainer) {
         attemptsContainer.style.display = 'none';
     }
 });
 
+//Prueba
+// document.addEventListener('DOMContentLoaded', function () {
+//     const keyboardButtons = document.querySelectorAll('#virtual-keyboard .key');
 
-//SweetAlert regresar
-function confirmExit(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "¡No podrás revertir esto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, salir',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "./../../html/ahorcado/index.html";
-        }
-    });
-}
-
+//     keyboardButtons.forEach(button => {
+//         button.addEventListener('click', function () {
+//             const letter = this.getAttribute('data-key');
+//             handleKeyPress({ key: letter });
+//         });
+//     });
+// });

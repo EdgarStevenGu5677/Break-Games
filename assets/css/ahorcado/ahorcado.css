@@ -6,3 +6,22 @@
     padding: 0 0.5rem;
     margin: 0 0.25rem;
 }
+
+#virtual-keyboard {
+    display: none;
+}
+
+/* Mostrar el teclado en dispositivos móviles */
+@media (max-width: 768px) {
+    #virtual-keyboard {
+        display: flex;
+    }
+}
+
+.key {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
