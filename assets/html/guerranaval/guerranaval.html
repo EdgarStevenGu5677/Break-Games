@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guerra Naval</title>
+    <link rel="icon" href="../../image/naval.webp" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Fontawesome Iconos -->
+    <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/guerranaval/guerranaval.css">
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto py-12 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <audio id="bombSound" src="../../sonidos/guerranaval/bomba.mp3"></audio>
+            <audio id="sinkSound" src="../../sonidos/guerranaval/aguaexplocion.mp3"></audio>
+            <audio id="winSound" src="../../sonidos/guerranaval/ganar.mp3"></audio>
+            <audio id="loseSound" src="../../sonidos/guerranaval/perder.mp3"></audio>
+
+
+            <!-- Contenedor 1 Movil -->
+            <div class="flex flex-col items-center mb-4 block md:hidden">
+                <div class="flex items-center">
+                    <div class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i id="playerIcon1" class="fa-solid fa-user mb-2 text-2xl turno-inactivo"></i>
+                        <div id="shipCounter2">21</div>
+                    </div>
+                    <div class="mx-4 text-3xl font-bold">VS</div>
+                    <div class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i id="robotIcon1" class="fa-solid fa-robot mb-2 text-2xl turno-inactivo"></i>
+                        <div id="shipCounter3">21</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 1 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-60 h-80 bg-white rounded-lg shadow-md flex justify-center items-center">
+                    <img src="https://i.pinimg.com/originals/78/5d/5a/785d5a045feef76122e6b4adabe8ee8a.gif"
+                        alt="Jugador">
+                    <div id="gameStatus" class="game-status"></div>
+                </div>
+            </div>
+            <!-- Contenedor del juego -->
+            <div class="container mx-auto px-4 py-16">
+                <div class="bg-blue-100 rounded-lg shadow-lg p-4">
+                    <div class="flex flex-col items-center">
+                        <!-- Cuadrícula de 10x10 del jugador -->
+                        <div id="containerPlayer" class="grid-container" style="display: none;">
+                            <div class="grid-content player-grid hidden" id="playerGrid">
+                                <!-- Aquí va la cuadrícula del jugador -->
+                            </div>
+                        </div>
+
+                        <!-- Cuadrícula de 10x10 del robot -->
+                        <div id="containerRobot" class="grid-container" style="display: none;">
+                            <div class="grid-content robot-grid hidden" id="robotGrid">
+                                <!-- Aquí va la cuadrícula del robot -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Contenedor 3 Movil -->
+            <div class="block md:hidden">
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                            <a href="#" onclick="confirmExit2(event)" class="fa-solid fa-arrow-left mb-2 text-3xl"></a>
+                        </div>
+                        <div class="mx-4 text-3xl font-bold"></div>
+                        <div id="startGameButton1"
+                            class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                            <a class="fa-solid fa-play mb-2 text-3xl"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 3 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-60 h-80 bg-white rounded-lg shadow-md flex justify-center items-center">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/5eeea355389655.59822ff824b72.gif"
+                        alt="celda">
+                </div>
+            </div>
+
+
+
+            <!-- Contenedor 4 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-60 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <button id="startGameButton"
+                        class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Iniciar
+                        Juego</button>
+                    <a href="#" onclick="confirmExit2(event)"
+                        class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Salir</a>
+                </div>
+            </div>
+
+            <!-- Contenedor 5 -->
+            <!-- Contenedor del marcador -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-80 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <div id="scoreboard" class="text-center mb-4">
+                        <div class="text-xl font-bold">Turno</div>
+                        <div class="flex justify-around mt-2 w-full space-x-4">
+                            <div class="flex flex-col items-center">
+                                <i id="playerIcon" class="fa-solid fa-user mb-2 text-3xl turno-inactivo"></i>
+                            </div>
+                            <div class="mx-6 text-3xl font-bold">VS</div>
+                            <div class="flex flex-col items-center">
+                                <i id="robotIcon" class="fa-solid fa-robot mb-2 text-3xl turno-inactivo"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 6 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-60 h-50 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <!-- Título de Barcos -->
+                    <h2 class="text-lg font-semibold mb-2">Barcos</h2>
+                    <p id="playerShipsRemaining" style="display: none;">
+                        Barcos restantes del jugador: <span id="shipCounter">21</span>
+                    </p>
+                    <p id="robotShipsRemaining" style="display: none;">
+                        Barcos restantes del robot: <span id="shipCounter1">21</span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/guerranaval/guerranaval.js"></script>
+    <script src="../../js/alert/alert.js"></script>
+
+</body>
+
+</html>

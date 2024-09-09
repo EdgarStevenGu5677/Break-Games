@@ -1,0 +1,34 @@
+body {
+    background-image: url('../../image/fondo1.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+  /* Asegura que el contenedor de la cuadrícula mantenga una relación de aspecto 1:1 */
+  .grid-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* Esto asegura que la altura sea igual al ancho */
+}
+
+.grid-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
+    /* Espacio entre celdas */
+}
+
+.grid-item {
+    background-color: #e5e7eb;
+    /* Color de fondo de las celdas */
+    border: 1px solid #d1d5db;
+    /* Borde de las celdas */
+}

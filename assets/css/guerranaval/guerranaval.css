@@ -1,0 +1,52 @@
+.grid-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+.grid-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
+}
+
+.grid-item {
+    background-color: #e5e7eb;
+    border: 1px solid #d1d5db;
+}
+
+/* No aplicamos color a los barcos del playerGrid */
+.player-grid .ship {
+    background-color: #e5e7eb; /* Barcos sin color */
+}
+
+/* Colores para los barcos y disparos en el robot grid */
+.robot-grid .ship {
+    background-color: #1d4ed8;
+}
+
+.robot-grid .hit {
+    background-color: red;
+}
+
+.player-grid .hit {
+    background-color: red;
+} 
+
+.miss {
+    background-color: gray;
+}
+
+.turno-activo {
+    color: #1d4ed8;
+}
+
+.turno-inactivo {
+    color: #d1d5db;
+}
