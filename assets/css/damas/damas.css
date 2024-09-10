@@ -1,0 +1,80 @@
+.juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.tablero-damas {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1;
+    /* Mantener proporción 1:1 */
+}
+
+.celda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    /* Bordes para visualizar mejor */
+}
+
+
+
+.celda.blanco {
+    background-color: #fff;
+}
+
+.celda.negro {
+    background-color: #000;
+}
+
+.pieza.blanco {
+    background-color: #fff;
+    border: 2px solid #000;
+}
+
+.pieza.negro {
+    background-color: #000;
+}
+
+.pieza.seleccionado {
+    box-shadow: 0 0 10px 3px yellow;
+}
+
+.celda.resaltado {
+    background-color: rgba(0, 255, 0, 0.5);
+    /* Fondo verde semitransparente */
+}
+
+
+.pieza {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    position: relative;
+    /* Para centrar la corona */
+}
+
+.corona {
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: blue;
+}
+
+.icono-blanco {
+    color: blue;
+    /* Cambia el color a azul */
+}
+
+.icono-negro {
+    color: gray;
+    /* Cambia el color a gris para el turno negro */
+}
