@@ -21,8 +21,7 @@ async function obtenerPalabraAleatoria() {
         console.error('Error al obtener la palabra:', error);
     }
 }
-
-// Función para generar la cuadrícula según el número de letras de la palabra
+// Hacer que el contenido editable no sea enfocable
 function generarCuadricula(palabra) {
     const numeroColumnas = palabra.length;
     const container = document.getElementById('playerGrid');
@@ -42,10 +41,11 @@ function generarCuadricula(palabra) {
             celda.className = 'grid-cell bg-gray-300'; // Iniciar todas las celdas en gris
             celda.contentEditable = true;
             celda.dataset.index = j;
+            celda.setAttribute('readonly', true); // Establecer readonly para prevenir el teclado virtual
             celda.addEventListener('input', (event) => {
                 // Limitar el contenido de la celda a una sola letra
                 if (event.target.textContent.length > 1) {
-                    event.target.textContent = event.target.textContent.slice(0, 1); 
+                    event.target.textContent = event.target.textContent.slice(0, 1);
                 }
                 moveToNextCell(event.target); // Mover a la siguiente celda
             });
@@ -176,7 +176,7 @@ function generarCuadricula(palabra) {
             primeraCelda.focus();
         }
     }
-    
+
     // Función para procesar la adivinanza de la fila activa
     async function procesarAdivinanzaFila() {
         const filaActual = container.querySelector('.grid-row.active-row');
@@ -201,7 +201,7 @@ function generarCuadricula(palabra) {
                         confirmButtonText: 'Aceptar'
                     }).then(async () => {
                         // Redireccionar a otra página
-                    window.location.href = 'wordle.html'; // Reemplaza con la URL de destino
+                        window.location.href = 'wordle.html'; // Reemplaza con la URL de destino
                     });
                 } else {
                     const siguienteFila = filaActual.nextElementSibling;
@@ -251,7 +251,3 @@ async function iniciarJuego() {
 
 iniciarJuego();
 
-
-document.getElementById('virtualKeyboard').addEventListener('click', () => {
-    document.activeElement.blur(); // Desenfocar el elemento activo
-});
