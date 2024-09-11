@@ -250,3 +250,8 @@ async function iniciarJuego() {
 }
 
 iniciarJuego();
+
+
+document.getElementById('virtualKeyboard').addEventListener('click', () => {
+    document.activeElement.blur(); // Desenfocar el elemento activo
+});
