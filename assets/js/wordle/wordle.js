@@ -92,11 +92,11 @@ function generarCuadricula(palabra) {
             const tecla = event.target.dataset.key;
             ingresarLetra(tecla);
         }
-        
+
         // Evitar que el teclado aparezca
         document.activeElement.blur(); // Elimina el foco del campo de entrada activo, si lo hay
     });
-    
+
 
     document.getElementById('enterButton').addEventListener('click', async () => {
         await procesarAdivinanzaFila(); // Asegúrate de esperar a que se procese
