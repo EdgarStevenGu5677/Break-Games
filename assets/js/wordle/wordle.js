@@ -87,16 +87,21 @@ function generarCuadricula(palabra) {
         }
     });
 
-    // Manejar clics en el teclado virtual
     document.getElementById('virtualKeyboard').addEventListener('click', (event) => {
         if (event.target.tagName === 'BUTTON') {
             const tecla = event.target.dataset.key;
             ingresarLetra(tecla);
         }
+        
+        // Evitar que el teclado aparezca
+        document.activeElement.blur(); // Elimina el foco del campo de entrada activo, si lo hay
     });
+    
 
     document.getElementById('enterButton').addEventListener('click', async () => {
         await procesarAdivinanzaFila(); // Asegúrate de esperar a que se procese
+        // Evitar que el teclado aparezca
+        document.activeElement.blur(); // Elimina el foco del campo de entrada activo, si lo hay
     });
 
     document.getElementById('backspaceButton').addEventListener('click', () => {
@@ -115,6 +120,8 @@ function generarCuadricula(palabra) {
                 moveToPreviousCell(celdaActiva);
             }
         }
+        // Evitar que el teclado aparezca
+        document.activeElement.blur(); // Elimina el foco del campo de entrada activo, si lo hay
     });
 
     // Función para ingresar letra en la celda activa
