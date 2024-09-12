@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veintiuno Blackjack</title>
+    <link rel="icon" href="../../image/blackjack/blackjackoscuro.webp" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Fontawesome Iconos -->
+    <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/blackjack/blackjack.css">
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto py-12 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Contenedor 1 Movil -->
+            <div class="flex flex-col items-center mb-4 block md:hidden">
+                <div class="flex items-center">
+                    <div class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i class="fa-solid fa-user mb-2 text-2xl"></i>
+                        <span id="balancePlayer1">500</span>
+                    </div>
+                    <div class="mx-4 text-3xl font-bold">VS</div>
+                    <div id="score-card-x"
+                        class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i class="fa-solid fa-robot mb-2 text-2xl"></i>
+                        <span id="balanceCruper1">500</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Contenedor 1 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center">
+                <div class="w-60 h-80 bg-white rounded-lg shadow-md flex justify-center items-center">
+                    <img src="https://i.pinimg.com/originals/78/5d/5a/785d5a045feef76122e6b4adabe8ee8a.gif"
+                        alt="Jugador">
+                </div>
+            </div>
+
+            <!-- Contenedor 2 -->
+            <div class="col-span-1 md:col-span-1 bg-gray-400 rounded-lg shadow-md">
+                <div class="mb-4">
+                    💰 <span id="balance">500</span>
+                </div>
+
+                <div class="flex items-center ">
+                    <div class="game-container col-span-3 md:col-span-1 mx-auto">
+                        <div id="dealer-hand" class="hand">
+                            <h2 class="text-center mt-4">Crupier</h2>
+                            <div class="flex items-center justify-between">
+                                <p id="dealer-score" class="mr-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-xl shadow-lg">0</p>
+                                <div id="dealer-cards" class="cards"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="player-hand" class="hand mt-4">
+                            <h2 class="text-center mt-4">Jugador</h2>
+                            <div class="flex items-center">
+                                <div id="player-cards" class="cards"></div>
+                                <p id="player-score" class="mr-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-xl shadow-lg">0</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="text-center mt-4 mb-2">
+                    Apuesta: <span id="bet">0</span>
+                </div>
+            </div>
+
+            <!-- Contenedor 3 Movil -->
+            <div class="block md:hidden bg-white rounded-lg shadow-md">
+                <div class="flex flex-col items-center">
+                    <h5 class="mb-2">Apuestas</h5>
+                    <div class="flex items-center  space-x-4 p-2">
+                        <button class="chip-button blue" onclick="subtractAmount(10)">10</button>
+                        <button class="chip-button pink" onclick="subtractAmount(20)">20</button>
+                        <button class="chip-button green" onclick="subtractAmount(50)">50</button>
+                        <button class="chip-button red" onclick="subtractAmount(100)">100</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 3 Movil -->
+            <div class="block md:hidden">
+                <div class="flex flex-col items-center">
+                    <div class="controls grid grid-cols-3 gap-1 sm:gap-2">
+                        <button id="btn-deal1"
+                            class="bg-green-500 text-white py-2 px-3 sm:px-4 rounded cursor-not-allowed opacity-50 text-sm sm:text-base"
+                            onclick="handleGameAction('deal')">Repartir</button>
+                        <button id="btn-hit1"
+                            class="bg-yellow-500 text-white py-2 px-3 sm:px-4 rounded cursor-not-allowed opacity-50 text-sm sm:text-base"
+                            onclick="handleGameAction('hit')">Pedir carta</button>
+                        <button id="btn-stand1"
+                            class="bg-red-500 text-white py-2 px-3 sm:px-4 rounded cursor-not-allowed opacity-50 text-sm sm:text-base"
+                            onclick="handleGameAction('stand')">Jugar</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Contenedor 3 Movil -->
+            <div class="block md:hidden">
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center">
+                        <div onclick="confirmExit(event)"
+                            class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                            <a class="fa-solid fa-arrow-left mb-2 text-3xl"></a>
+                        </div>
+                        <div class="mx-4 text-3xl font-bold"></div>
+                        <div onclick="resetGameButton(event)"
+                            class="w-20 h-20 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                            <a class="fa-solid fa-rotate-right mb-2 text-3xl"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 3 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center">
+                <div class="w-60 h-80 bg-white rounded-lg shadow-md flex justify-center items-center">
+
+                    <!-- Sección de fichas -->
+                    <div class="chips flex flex-col space-y-4">
+                        <h5>Apuestas</h5>
+                        <button class="chip-button blue" onclick="subtractAmount(10)">10</button>
+                        <button class="chip-button pink" onclick="subtractAmount(20)">20</button>
+                        <button class="chip-button green" onclick="subtractAmount(50)">50</button>
+                        <button class="chip-button red" onclick="subtractAmount(100)">100</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 4 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-60 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <a href="#" onclick="resetGameButton(event)"
+                        class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Reiniciar</a>
+                    <a href="#" onclick="confirmExit(event)"
+                        class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Salir</a>
+                </div>
+            </div>
+
+
+            <!-- Contenedor 5 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-100 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <div class="controls grid grid-cols-3 gap-2">
+                        <button id="btn-deal"
+                            class="bg-green-500 text-white py-2 px-4 rounded cursor-not-allowed opacity-50"
+                            onclick="handleGameAction('deal')">Repartir</button>
+                        <button id="btn-hit"
+                            class="bg-yellow-500 text-black py-2 px-4 rounded cursor-not-allowed opacity-50"
+                            onclick="handleGameAction('hit')">Pedir carta</button>
+                        <button id="btn-stand"
+                            class="bg-red-500 text-white py-2 px-4 rounded cursor-not-allowed opacity-50"
+                            onclick="handleGameAction('stand')">Plantarse</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 6 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-60 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <div class="text-center mb-4">
+                        <div class="text-xl font-bold">Marcador</div>
+                        <div class="flex justify-around mt-2 w-full space-x-4">
+                            <div class="flex flex-col items-center">
+                                <i class="fa-solid fa-user mb-2 text-3xl"></i>
+                                <span id="balancePlayer">500</span>
+                            </div>
+                            <div class="mx-4 text-3xl font-bold">VS</div>
+                            <div class="flex flex-col items-center">
+                                <i class="fa-solid fa-robot mb-2 text-3xl"></i>
+                                <span id="balanceCruper">500</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="win-sound" src="../../sonidos/blackjack/ganar.mp3"></audio>
+    <audio id="lose-sound" src="../../sonidos/blackjack/perder.mp3"></audio>
+    <audio id="tie-sound" src="../../sonidos/blackjack/empate.mp3"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/blackjack/blackjack.js"></script>
+    <script src="../../js/alert/alert.js"></script>
+</body>
+
+</html>

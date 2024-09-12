@@ -1,0 +1,114 @@
+.game-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hand {
+    margin: 20px 0;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 60px;
+    height: 90px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    background-color: #fff;
+    color: black;
+    /* Color por defecto (negro) */
+}
+
+.card.red {
+    color: red;
+    /* Las cartas rojas */
+}
+
+.controls button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+.chip-button {
+    width: 50px;
+    /* Tamaño del botón */
+    height: 50px;
+    /* Tamaño del botón */
+    border-radius: 50%;
+    /* Hacer el botón redondo */
+    color: white;
+    /* Color del texto */
+    font-size: 1.5rem;
+    /* Tamaño del texto */
+    font-weight: bold;
+    /* Negrita */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra */
+    border: 2px solid white;
+    /* Borde blanco */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Transición suave */
+}
+
+.chip-button:hover {
+    transform: scale(1.1);
+    /* Aumentar tamaño en hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Aumentar sombra en hover */
+}
+
+/* Colores específicos para cada botón */
+.chip-button.red {
+    background-color: #e53935;
+    /* Rojo */
+}
+
+.chip-button.green {
+    background-color: #43a047;
+    /* Verde */
+}
+
+.chip-button.blue {
+    background-color: #1e88e5;
+    /* Azul */
+}
+
+.chip-button.pink {
+    background-color: #d440ad;
+    /* Amarillo */
+}
+
+.card-back {
+    background-color: #333;
+    /* Color oscuro para simular la parte trasera de la carta */
+    color: #333;
+    /* Color de texto oculto */
+    border: 1px solid #000;
+    /* Borde para la carta */
+    text-align: center;
+    /* Centrar el icono en la carta */
+    line-height: 100px;
+    /* Ajustar según el tamaño de la carta */
+    font-size: 2em;
+    /* Tamaño del icono de la carta */
+}
