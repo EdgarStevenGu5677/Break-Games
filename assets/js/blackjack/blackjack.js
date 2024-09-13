@@ -10,13 +10,43 @@ const tieSound = document.getElementById('tie-sound');
 
 function subtractAmount(amount) {
     if (balance > 0) {
+        // Verifica si el saldo del crupier es mayor que cero
+        if (balanceCruper <= 0) {
+            Swal.fire({
+                title: 'Has dejado al crupier en la ruina',
+                text: 'El Crupier se ha quedado sin fondos y no puede continuar apostando.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Actualiza la variable para indicar que hay un nuevo crupier
+                    newDealer = true;
+
+                    // Muestra el segundo alerta
+                    Swal.fire({
+                        title: 'Nuevo Crupier',
+                        text: 'Un nuevo crupier ha llegado.',
+                        icon: 'info',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        balanceCruper = 700; // Asigna un nuevo saldo al crupier
+                        document.getElementById('balanceCruper').innerText = balanceCruper;
+                        document.getElementById('balanceCruper1').innerText = balanceCruper;
+                    });
+                }
+            });
+            return; // Detiene la función si el saldo del crupier es cero
+        }
+
         if (balance >= amount) {
             balance -= amount; // Restar del saldo
             bet += amount; // Sumar a la apuesta
             balanceCruper -= amount; // Sincronizar la apuesta del crupier
+            playAudio(document.getElementById('bet-sound'));
         } else {
             bet += balance; // Sumar lo que queda si es menor que la cantidad
             balanceCruper -= balance; // Restar lo que queda del saldo del crupier
+            playAudio(document.getElementById('bet-sound'));
             balance = 0;
         }
 
@@ -43,15 +73,21 @@ function subtractAmount(amount) {
             });
         }
     } else {
-        // Mostrar alerta si se intenta seguir apostando sin fondos
         Swal.fire({
-            title: '¡Sin fondos!',
+            title: 'Has quedado en la ruina',
             text: 'No puedes seguir apostando sin fondos.',
             icon: 'warning',
-            confirmButtonText: 'OK'
+            showCancelButton: true,
+            confirmButtonText: 'Retirarse',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = './index.html';
+            }
         });
     }
 }
+
 
 function enableGameControls(enable) {
     const buttons = document.querySelectorAll('.controls button');
@@ -163,6 +199,7 @@ function dealInitialCards() {
         // Repartir cartas iniciales
         playerHand = [deck.pop(), deck.pop()];
         dealerHand = [deck.pop(), deck.pop()];
+        playAudio(document.getElementById('deal-sound'));
         updateGame();
     } else {
         Swal.fire({
@@ -201,6 +238,7 @@ function revealDealerHand() {
 
 function hit() {
     playerHand.push(deck.pop());
+    playAudio(document.getElementById('1deal-sound'));
     updateGame();
     const playerScore = calculateHandValue(playerHand);
     if (playerScore > 21) {
@@ -232,6 +270,7 @@ function stand() {
     // Mostrar la primera carta del crupier boca abajo
     const dealerHandElement = document.getElementById('dealer-cards');
     dealerHandElement.querySelector('.card-back').classList.remove('card-back');
+    playAudio(document.getElementById('1deal-sound'));
     updateGame();
     playDealerTurn(); // Continuar con el juego del crupier
 }
@@ -392,7 +431,7 @@ function resetGameButton() {
 }
 
 function playAudio(audioElement) {
-audioElement.currentTime = 0; // Reiniciar el audio
-audioElement.play(); // Reproducir el audio
+    audioElement.currentTime = 0; // Reiniciar el audio
+    audioElement.play(); // Reproducir el audio
 }
 
