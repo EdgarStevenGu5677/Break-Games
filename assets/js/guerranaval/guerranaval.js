@@ -113,6 +113,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 remainingShips--;
                 updateShipCounter();
                 sinkSound.play();
+                setTimeout(() => {
+                    Swal.fire({
+                        title: '¡Has hundido un barco del robot!',
+                        icon: 'success',
+                        timer: 2000, // Tiempo en milisegundos antes de cerrar la alerta
+                        timerProgressBar: true, // Opcional: Muestra una barra de progreso del temporizador
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
+                        }
+                    });
+                }, 1000);
                 sinkSound.onended = function () {
                     if (remainingShips === 0) {
                         winSound.play();
@@ -172,6 +184,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 robotRemainingShips--;
                 updateShipCounter();
                 sinkSound.play();
+                setTimeout(() => {
+                    Swal.fire({
+                        title: '¡El robot te ha hundido un barco!',
+                        icon: 'success',
+                        timer: 2000, // Tiempo en milisegundos antes de cerrar la alerta
+                        timerProgressBar: true, // Opcional: Muestra una barra de progreso del temporizador
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
+                        }
+                    });
+                }, 1000); // Ajusta el tiempo según la duración del sonido
                 sinkSound.onended = function () {
                     if (robotRemainingShips === 0) {
                         loseSound.play(); // Reproduce el sonido de derrota
