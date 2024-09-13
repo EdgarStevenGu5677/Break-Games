@@ -86,6 +86,15 @@ function subtractAmount(amount) {
             }
         });
     }
+
+    if (balanceCruper === 0) {
+        Swal.fire({
+            title: '¡Sin fondos!',
+            text: 'El crupier ya no tiene fondos',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        });
+    }
 }
 
 
