@@ -11,7 +11,18 @@ const tieSound = document.getElementById('tie-sound');
 function subtractAmount(amount) {
     if (balance > 0) {
         // Verifica si el saldo del crupier es mayor que cero
-        if (balanceCruper <= 0) {
+        if (balanceCruper >= 0){
+            if (balanceCruper === 0) {
+                Swal.fire({
+                    title: '¡Sin fondos!',
+                    text: 'El crupier ya no tiene fondos',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
+            }
+
+        }
+        else {
             Swal.fire({
                 title: 'Has dejado al crupier en la ruina',
                 text: 'El Crupier se ha quedado sin fondos y no puede continuar apostando.',
@@ -87,14 +98,6 @@ function subtractAmount(amount) {
         });
     }
 
-    if (balanceCruper === 0) {
-        Swal.fire({
-            title: '¡Sin fondos!',
-            text: 'El crupier ya no tiene fondos',
-            icon: 'warning',
-            confirmButtonText: 'OK'
-        });
-    }
 }
 
 
