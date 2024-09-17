@@ -170,6 +170,10 @@ function avanzar(numeroCasillas) {
                 text: `${jugador1} ha ganado!`,
                 icon: 'success',
                 confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "serpescal.html";
+                }
             });
             deshabilitarBotonLanzarDado();
         } else if (posicionJugador2 === NUMERO_CASILLAS) {
@@ -180,6 +184,10 @@ function avanzar(numeroCasillas) {
                 text: `${jugador2} Te ha ganado!`,
                 icon: 'error',
                 confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "serpescal.html";
+                }
             });
             deshabilitarBotonLanzarDado();
         }
