@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serpientes y escaleras</title>
+    <link rel="icon" href="../../image/serpescal/servienteoscuro.webp" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Fontawesome Iconos -->
+    <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/serpescal/serpescal.css">
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto py-6 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Contenedor 1 Movil -->
+            <div class="flex flex-col items-center mb-4 block md:hidden">
+                <div class="flex items-center">
+                    <div onclick="confirmExit(event)"
+                        class="w-18 h-18 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <a href="#" class="fa-solid fa-arrow-left mb-2 text-3xl"></a>
+                    </div>
+                    <div class="mx-4 text-1xl font-bold"></div>
+                    <div class="w-18 h-18 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i id="iconoUsuario1" class="fa-solid fa-user mb-2 text-2xl text-blue-500"></i>
+                    </div>
+                    <div class="mx-2 text-1xl font-bold">VS</div>
+                    <div class="w-18 h-18 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <i id="iconoRobot1" class="fa-solid fa-robot mb-2 text-2xl text-red-500"></i>
+                    </div>
+                    <div class="mx-4 text-1xl font-bold"></div>
+                    <div onclick="reiniciarJuego(event)"
+                        class="w-18 h-18 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                        <a class="fa-solid fa-rotate-right mb-2 text-3xl"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 1 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center">
+                <div class="w-60 h-100 bg-white rounded-lg shadow-md flex justify-center items-center">
+                    <img src="https://i.pinimg.com/originals/78/5d/5a/785d5a045feef76122e6b4adabe8ee8a.gif"
+                        alt="Jugador">
+                </div>
+            </div>
+
+            <!-- Contenedor 2 -->
+            <div class="col-span-1 md:col-span-1 bg-white rounded-lg shadow-md p-5 flex justify-center items-center">
+                <div id="juego" class="w-full h-full max-w-screen-lg max-h-screen-lg">
+                    <div id="tablero" class="tablero"></div>
+                </div>
+            </div>
+
+            <!-- Contenedor 3 Movil -->
+            <div class="block md:hidden">
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center">
+                        <div id="dice-container"
+                            class="w-80 h-40 bg-white rounded-lg shadow-md flex justify-center items-center p-4 relative">
+                            <button id="btn-lanzar-dado1"
+                                class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none">
+                                Tirar Dado
+                            </button>
+                            <!-- Cara del dado -->
+                            <div id="dice1"
+                                class="w-20 h-20 flex justify-center items-center border border-gray-300 rounded-lg relative transition-transform duration-500">
+                                <!-- Puntos del dado -->
+                                <div
+                                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full">
+                                </div>
+                                <div class="absolute top-4 left-4 w-4 h-4 bg-black rounded-full"></div>
+                                <div class="absolute top-4 right-4 w-4 h-4 bg-black rounded-full"></div>
+                                <div class="absolute bottom-4 left-4 w-4 h-4 bg-black rounded-full"></div>
+                                <div class="absolute bottom-4 right-4 w-4 h-4 bg-black rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor 3 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center">
+                <div class="w-60 h-100 bg-white rounded-lg shadow-md flex justify-center items-center">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/5eeea355389655.59822ff824b72.gif"
+                        alt="celda">
+                </div>
+            </div>
+
+            <!-- Contenedor 4 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <div class="flex items-center">
+                        <!-- Icono de Usuario (azul) -->
+                        <div class="w-20 h-20 flex flex-col justify-center items-center p-4">
+                            <i id="iconoUsuario" class="fa-solid fa-user mb-2 text-2xl text-blue-500"></i>
+                        </div>
+
+                        <!-- Espaciador o texto adicional -->
+                        <div class="mx-4 text-2xl font-bold"></div>
+
+                        <!-- Icono del Robot (rojo) -->
+                        <div class="w-20 h-20 flex flex-col justify-center items-center p-4">
+                            <i id="iconoRobot" class="fa-solid fa-robot mb-2 text-2xl text-red-500"></i>
+                        </div>
+
+                    </div>
+                    <a onclick="reiniciarJuego(event)"
+                        class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Reiniciar</a>
+                    <a href="#" onclick="confirmExit(event)"
+                        class="mb-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full text-center">Salir</a>
+                </div>
+            </div>
+
+            <!-- Contenedor 5 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div class="w-80 h-40 bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4">
+                    <!-- Botón para tirar el dado -->
+                    <button id="btn-lanzar-dado"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none">
+                        Tirar Dado
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenedor 6 -->
+            <div class="hidden md:flex col-span-1 md:col-span-1 shadow-sm md:pr-2 justify-center items-center">
+                <div id="dice-container"
+                    class="w-60 h-60 bg-white rounded-lg shadow-md flex justify-center items-center p-4 relative">
+                    <!-- Cara del dado -->
+                    <div id="dice"
+                        class="w-24 h-24 flex justify-center items-center border border-gray-300 rounded-lg relative transition-transform duration-500">
+                        <!-- Puntos del dado -->
+                        <div
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full">
+                        </div>
+                        <div class="absolute top-4 left-4 w-4 h-4 bg-black rounded-full"></div>
+                        <div class="absolute top-4 right-4 w-4 h-4 bg-black rounded-full"></div>
+                        <div class="absolute bottom-4 left-4 w-4 h-4 bg-black rounded-full"></div>
+                        <div class="absolute bottom-4 right-4 w-4 h-4 bg-black rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Elemento de audio para reproducir el sonido -->
+    <audio id="dice-sound" src="../../sonidos/serpescal/dado.mp3" preload="auto"></audio>
+    <audio id="move-sound" src="../../sonidos/serpescal/mover.mp3"></audio>
+    <audio id="serpiente-sound" src="../../sonidos/serpescal/bajar.mp3"></audio>
+    <audio id="escalera-sound" src="../../sonidos/serpescal/subir.mp3"></audio>
+    <audio id="win-sound" src="../../sonidos/ahorcado/ganar.mp3"></audio>
+    <audio id="lose-sound" src="../../sonidos/ahorcado/perder.mp3"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/serpescal/serpescal.js"></script>
+    <script src="../../js/alert/alert.js"></script>
+</body>
+
+</html>
